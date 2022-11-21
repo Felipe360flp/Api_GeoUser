@@ -1,0 +1,141 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id  String @id @default(uuid())
+  name String
+<<<<<<< HEAD
+  cpf_cnpj String?
+  email String @unique
+  password String
+  permission String @default("COMMON")
+  agenda Agenda[]
+=======
+  email String    @unique
+  password String
+  cpf_cnpj String @unique
+  wallet Float?
+
+  transactions Transaction[]
+
+  category Category @relation(fields: [categoryID],references: [id])
+  categoryID String
+
+>>>>>>> ed270f1cb46b6336ac77e5791a00ee4208845e0b
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+}
+
+<<<<<<< HEAD
+model Client{
+  id String @id @default(uuid())
+  name String
+  dn Int
+  cpf_cnpj Int @unique
+  email String @unique
+  marketing String
+  ddd Int
+  contact Int
+  city String
+  end String
+  number Int
+  productID Product[]
+  agenda Agenda[]
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+  @@map("client")
+}
+
+model Product{
+  id String @id @default(uuid())
+  clientID Client[]
+  title String
+  description String
+  agenda Agenda[]
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+  @@map("product")
+}
+
+model Agenda{
+  id String @id @default(uuid())
+  user User @relation(fields: [userID],references: [id])
+  userID String
+  client Client @relation(fields: [clientID],references: [id])
+  clientID String
+  pay Boolean
+  date Int
+  time Int
+  product Product @relation(fields: [productID],references: [id])
+  productID String
+  description String
+  local Local @relation(fields: [localID],references: [id])
+  localID String
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+  @@map("agenda")
+}
+
+model Local{
+  id String @id @default(uuid())
+  city String
+  end String
+  number Int
+  ddd Int
+  contact Int
+  reference String
+  agenda Agenda[]
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+  @@map("local")
+=======
+model Category {
+  id String @id @default(uuid())
+  Title String    @unique
+  Description String
+
+  user User[]
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+}
+
+model Transaction{
+  id String @id @default(uuid())
+
+  payerID String
+
+  payee User @relation(fields: [payeeID],references: [id])
+  payeeID String
+
+  value Float
+
+  isReverse Boolean @default(false)
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+>>>>>>> ed270f1cb46b6336ac77e5791a00ee4208845e0b
+}
+
+
+
+
+
+
+<<<<<<< HEAD
+
+
+
+
+
+
+
+
+=======
+>>>>>>> ed270f1cb46b6336ac77e5791a00ee4208845e0b
