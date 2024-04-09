@@ -9,13 +9,8 @@ import { isAdmin } from 'src/Utils/isAdmin.utils';
 import { LoggedUser } from 'src/auth/logged-user.decorator';
 import { FileInterceptor } from '@nestjs/platform-express';
 
-<<<<<<< HEAD
 @ApiTags("User")
 @Controller("User")
-=======
-
-@Controller()
->>>>>>> ed270f1cb46b6336ac77e5791a00ee4208845e0b
 export class UserController{
   constructor(private userService: UserService){}
 
@@ -42,22 +37,12 @@ export class UserController{
     return this.userService.findById(Id)
   }
 
-  @ApiTags("Auth")
-  @Post("/ADM")
-  @ApiOperation({
-    summary: 'Adicionar um usuário de nível Admin',
-  })
-  createADM(@Body() createUserDto: CreateUserDto) {
-    return this.userService.createADM(createUserDto);
-  }
-
-  @ApiTags("Auth")
-  @Post('create-user')
+  @ApiTags("User")
+  @Post()
   @ApiOperation({
     summary: 'Adicionar um usuário',
   })
   create(@Body() createUserDto: CreateUserDto) {
-<<<<<<< HEAD
 
     if(
       !createUserDto.name ||
@@ -72,21 +57,14 @@ export class UserController{
       }
   }
 
-  @IsUppercase()
-  @Patch(':id')
-=======
-    return this.userService.create(createUserDto);
-  }
-
   @ApiTags("Users")
   @Patch('/:id')
->>>>>>> ed270f1cb46b6336ac77e5791a00ee4208845e0b
   @ApiOperation({
     summary: 'Alterar dados de um usuário',
   })
   @UseGuards(AuthGuard())
   @ApiBearerAuth()
-  update(@Body() dto: UpdateUserDto,@LoggedUser() user:Partial<User>){
+  update(@Body() dto: UpdateUserDto,@LoggedUser() user:User){
     return this.userService.update(dto,user);
   }
 
@@ -101,16 +79,6 @@ export class UserController{
       delete(@Param('id') id: string,@LoggedUser() user:User) {
       this.userService.delete(id);
   }
-
-
-  @Post('upload/file')
-  @ApiOperation({
-    summary: 'Fazer upload de arquivos',
-  })
-  @UseInterceptors(FileInterceptor('file'))
-  uploadFile(@UploadedFile() file: Express.Multer.File) {
-  console.log('file',file);
-}
 
 }
 
