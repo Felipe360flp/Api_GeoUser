@@ -5,9 +5,7 @@ import {UpdateUserDto} from './dto/users-update.dto';
 import { User } from './entities/users.entity';
 import { UserService } from './service.users';
 import { AuthGuard } from '@nestjs/passport';
-import { isAdmin } from 'src/Utils/isAdmin.utils';
 import { LoggedUser } from 'src/auth/logged-user.decorator';
-import { FileInterceptor } from '@nestjs/platform-express';
 
 @ApiTags("User")
 @Controller("User")
@@ -15,13 +13,11 @@ export class UserController{
   constructor(private userService: UserService){}
 
 
-  @ApiTags("Users")
+  @ApiTags("User")
   @Get('/all')
   @ApiOperation({
     summary: 'Localizar todos os usuários',
   })
-  @UseGuards(AuthGuard())
-  @ApiBearerAuth()
   findAll(){
     return this.userService.findAll();
   }

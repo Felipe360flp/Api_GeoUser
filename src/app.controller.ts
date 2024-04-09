@@ -4,13 +4,10 @@ import { ApiTags } from '@nestjs/swagger';
 import { fileURLToPath } from 'url';
 import { AppService } from './app.service';
 
-<<<<<<< HEAD
+
 @ApiTags('Api')
 @Controller('Api')
-=======
-@ApiTags('Status')
-@Controller()
->>>>>>> ed270f1cb46b6336ac77e5791a00ee4208845e0b
+
 export class AppController {
   constructor(private readonly appService: AppService) {}
 

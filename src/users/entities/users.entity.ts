@@ -4,8 +4,9 @@ export class User {
   name:string;
   cpf_cnpj:string;
   email:string;
-  password:number;
+  password:string;
   permission?:string;
+  agenda?:[];
   createdAt?:Date;
   updatedAt?:Date;
 }

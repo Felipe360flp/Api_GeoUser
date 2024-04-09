@@ -20,7 +20,6 @@ export class AgendaService {
       },
       date:dto.date,
       time:dto.time,
-      pay:dto.pay,
       client:{
         connect:{
           id:dto.clientID
@@ -49,7 +48,6 @@ export class AgendaService {
         },
         date:true,
         time:true,
-        pay:true,
         client:{
           select:{
             id:true
@@ -87,7 +85,6 @@ export class AgendaService {
       },
       date:dto.date,
       time:dto.time,
-      pay:dto.pay,
       client:{
         connect:{
           id:dto.clientID
@@ -117,7 +114,6 @@ export class AgendaService {
         },
         date:true,
         time:true,
-        pay:true,
         client:{
           select:{
             id:true

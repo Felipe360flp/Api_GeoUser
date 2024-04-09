@@ -4,7 +4,6 @@ import { JwtService } from '@nestjs/jwt';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { LoginResponseDto } from './dto/login-response.dto';
 import { LoginDto } from './dto/login.dto';
-import { User } from 'src/Users/entities/users.entity';
 
 @Injectable()
 export class AuthService {
@@ -35,12 +34,8 @@ export class AuthService {
 
     return {
       token: this.jwtService.sign({ email }),
-<<<<<<< HEAD
       userID:user.id
     }
-=======
-      user:undefined,
-    };
->>>>>>> ed270f1cb46b6336ac77e5791a00ee4208845e0b
   }
 }
+
