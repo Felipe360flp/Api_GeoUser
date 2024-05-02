@@ -8,9 +8,6 @@ Em progresso!
 ## Requirements
 
 
-
-Serviço RESTFul.
-
 [Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
 
 ## Installation
