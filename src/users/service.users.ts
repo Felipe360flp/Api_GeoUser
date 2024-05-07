@@ -14,6 +14,7 @@ export class UserService {
   async findAll(){
     return await this.prisma.user.findMany({
       select:{
+        id:true,
         name:true,
         cpf_cnpj:true,
         email:true,
@@ -25,6 +26,13 @@ export class UserService {
   findById(id: string){
     const record = this.prisma.user.findUnique({
       where: { id },
+      select:{
+        id:true,
+        name:true,
+        cpf_cnpj:true,
+        email:true,
+        permission:true,
+      }
     });
 
     if (!record) {
@@ -62,8 +70,6 @@ export class UserService {
     delete dto.confirmPassword;
 
     const data: Prisma.UserUpdateInput = {
-      name:dto.name,
-      email:dto.email,
       password:await bcrypt.hash(dto.password, 10),
     }
     return this.prisma.user
@@ -71,7 +77,6 @@ export class UserService {
       where: {id:user.id},
       data,
       select: {
-        id:true,
         name:true,
         email:true,
         password:false,
@@ -80,7 +85,6 @@ export class UserService {
   }
 
   async delete(id: string) {
-    await this.findById(id);
     await this.prisma.user.delete({ where: { id } });
   }
 

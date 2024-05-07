@@ -22,13 +22,11 @@ export class UserController{
     return this.userService.findAll();
   }
 
-  @ApiTags("Users")
+  @ApiTags("User")
   @Get("/:id")
   @ApiOperation({
     summary: 'Localizar um usuário',
   })
-  @UseGuards(AuthGuard())
-  @ApiBearerAuth()
   findOne(@Param("id") Id:string,){
     return this.userService.findById(Id)
   }
@@ -58,21 +56,18 @@ export class UserController{
   @ApiOperation({
     summary: 'Alterar dados de um usuário',
   })
-  @UseGuards(AuthGuard())
-  @ApiBearerAuth()
+
   update(@Body() dto: UpdateUserDto,@LoggedUser() user:User){
     return this.userService.update(dto,user);
   }
 
-  @ApiTags("Users")
+  @ApiTags("User")
   @Delete('/:id')
       @ApiOperation({
         summary: 'Deletar um usuário',
       })
       @HttpCode(HttpStatus.NO_CONTENT)
-      @UseGuards(AuthGuard())
-      @ApiBearerAuth()
-      delete(@Param('id') id: string,@LoggedUser() user:User) {
+      delete(@Param('id') id: string) {
       this.userService.delete(id);
   }
 
